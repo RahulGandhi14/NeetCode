@@ -1,31 +1,33 @@
 function lengthOfLongestSubstring(s: string): number {
-    if (s.length === 0) return s.length
-    const map = new Map<string, number>()
-    let longest = 0, left = 0, right = left + 1
-    map.set(s[left], left)
+    if (s.length === 0) return s.length;
+    const map = new Map<string, number>();
+    let longest = 0,
+        left = 0,
+        right = left + 1;
+    map.set(s[left], left);
 
     while (left < right && right < s.length) {
         if (map.has(s[right])) {
             if (map.size > longest) {
-                longest = map.size
+                longest = map.size;
             }
-            left = (map.get(s[right]) || 0) + 1
-            const duplicateElementIdx = (map.get(s[right]) || 0)
+            left = (map.get(s[right]) || 0) + 1;
+            const duplicateElementIdx = map.get(s[right]) || 0;
             for (const [key, value] of map.entries()) {
                 if (value <= duplicateElementIdx) {
-                    map.delete(key)
+                    map.delete(key);
                 }
             }
         }
-        map.set(s[right], right)
-        right++
+        map.set(s[right], right);
+        right++;
     }
 
     if (map.size > longest) {
-        longest = map.size
+        longest = map.size;
     }
 
-    return longest
+    return longest;
 };
 
 
