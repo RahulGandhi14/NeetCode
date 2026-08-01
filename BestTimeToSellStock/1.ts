@@ -1,22 +1,18 @@
 function maxProfit(prices: number[]): number {
-  let min = 0
-  let profit = 0
+  let min = prices[0];
+  let profit = 0;
 
   prices.forEach((price, idx) => {
-    if (idx === 0) {
-      min = price
-    } else {
-      const currentProfit = price - min
-      if (currentProfit > profit) {
-        profit = currentProfit
-      }
-      if (price < min) {
-        min = price
-      }
+    const currentProfit = price - min;
+    if (currentProfit > profit) {
+      profit = currentProfit;
     }
-  })
+    if (price < min) {
+      min = price;
+    }
+  });
 
-  return profit
+  return profit;
 };
 
 // DYNAMIC PROGRAMMING - Same as approach1 
