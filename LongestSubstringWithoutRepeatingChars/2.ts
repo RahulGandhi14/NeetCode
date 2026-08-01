@@ -14,16 +14,7 @@ function lengthOfLongestSubstring2(s: string): number {
         right++
     }
 
-    let currentLongest = 0
-    for (const [_, value] of map.entries()) {
-        if (!(value < left)) {
-            currentLongest++
-        }
-    }
-
-    if (currentLongest > longest) {
-        return currentLongest
-    }
+    longest = Math.max(right - left, longest)
 
     return longest
 };
